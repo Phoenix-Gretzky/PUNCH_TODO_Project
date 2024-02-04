@@ -10,6 +10,7 @@ todo list demo project created in kotlin using room database. and also added not
 2. The server has end points ready and they would be provided to me in future so that i can add them and those endpoints will be fired from the app
 
 ##DESCRIPTION
+###<B><I><U>Android Studio 4.1.3 | Kotlin 1.3.50 | AGP 3.4.2  | Gradle 5.1.1 | JDK 11 | Compile SDK 29 </BIU>
 1. All the setting and configuration has been been done for firing the apis just need the BASE URL and endpoints to work.
 2. App has been configured with the security features for firing of apis which include Auth Token and Refresh Auth Token and their expiry time
 3. App has been added with 2 Api at the moment which include tracking and sending analytics for 3 features :
