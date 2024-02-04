@@ -35,20 +35,38 @@ iii. Deleting a todo task
 
 1. Retrofit -- Used for network calls
 2. Coroutines -- Used for async and concurrent programming
-3. retrofit okhttp logging -- for logging of network calls
-4. retrofit Gson-- Used for converting the Json directly to model classes.
+3. Retrofit Okhttp logging -- for logging of network calls
+4. Retrofit Gson-- Used for converting the Json directly to model classes.
 
 
 ## CHANGES  
 1. Created some packages and refactored the destinations for some files according to those packages to make the project easier to understand for example UI,VIEWMODEL etc.
 2. Did changes in viewmodel, Application class, Main Activity,manifest except for them just refactoring changes for added packages are there.
 3. Added new files for better SOLID  principle approch and maintaining structure of the project like
-    Api Interface - for firing API 
-    AuthInterceptor - for Authentication 
-    MyApplication - for Global Variable without wasting memory
-    Repository    - for Firing APi according to MVVM 
-    SessionManager - For Managing Session 
-    TodoData      -  for sending the data to the server 
-    TodoViewModelFactory - for Injecting the ViewModel with Dependency 
-    TokenResponse - for Getting the token response from the server 
+
+   
+     <I> Api Interface - for firing API
+
+   
+      AuthInterceptor - for Authentication
+
+   
+      MyApplication - for Global Variable without wasting memory
+
+   
+      Repository    - for Firing APi according to MVVM
+
+   
+      SessionManager - For Managing Session
+
+   
+      TodoData      -  for sending the data to the server
+
+   
+      TodoViewModelFactory - for Injecting the ViewModel with Dependency
+
+   
+      TokenResponse - for Getting the token response from the server</I>
+
+   
      
