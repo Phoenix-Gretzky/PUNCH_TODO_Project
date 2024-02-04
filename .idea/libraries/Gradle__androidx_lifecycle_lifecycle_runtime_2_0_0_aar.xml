@@ -4,8 +4,14 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bfbb411a9a08a3b5f75095d4136c0f23/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bfbb411a9a08a3b5f75095d4136c0f23/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bfbb411a9a08a3b5f75095d4136c0f23/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b3be91a277fe7228683fc3d57954ed40/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/db942afab2e72e89e923ada4021b2814/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/db942afab2e72e89e923ada4021b2814/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/db942afab2e72e89e923ada4021b2814/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-runtime/2.0.0/94562933879240f04fc2dea3f1841171b164c748/lifecycle-runtime-2.0.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

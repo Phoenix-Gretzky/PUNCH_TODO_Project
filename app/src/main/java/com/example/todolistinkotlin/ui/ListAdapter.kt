@@ -1,10 +1,12 @@
-package com.example.todolistinkotlin
+package com.example.todolistinkotlin.ui
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todolistinkotlin.R
+import com.example.todolistinkotlin.model.ToDoListData
 import com.example.todolistinkotlin.databinding.ItemTolistBinding
 
 /**
@@ -20,7 +22,8 @@ class ListAdapter(private val listData: List<ToDoListData>, private val onClick:
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding: ItemTolistBinding =
-            DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_tolist, parent, false)
+            DataBindingUtil.inflate(LayoutInflater.from(parent.context),
+                R.layout.item_tolist, parent, false)
         return ListViewHolder(binding, onClick)
     }
 }

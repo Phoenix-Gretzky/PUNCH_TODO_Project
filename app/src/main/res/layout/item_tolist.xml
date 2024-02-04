@@ -5,7 +5,7 @@
     <data>
         <variable name="title" type="String"/>
         <variable name="toDoList"
-                  type="com.example.todolistinkotlin.ToDoListData"/>
+                  type="com.example.todolistinkotlin.model.ToDoListData"/>
         <variable name="isRead" type="boolean"/>
     </data>
     <androidx.cardview.widget.CardView

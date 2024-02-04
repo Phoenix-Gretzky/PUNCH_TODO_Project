@@ -1,4 +1,4 @@
-package com.example.todolistinkotlin
+package com.example.todolistinkotlin.model
 
 import androidx.room.Entity
 

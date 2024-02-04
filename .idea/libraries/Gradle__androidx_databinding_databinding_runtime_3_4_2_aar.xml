@@ -4,8 +4,13 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c8a341012d94c0deb5687ebd561c537e/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c8a341012d94c0deb5687ebd561c537e/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c8a341012d94c0deb5687ebd561c537e/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b08b41d5ad826b3d12a552e8e35dabe0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b08b41d5ad826b3d12a552e8e35dabe0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b08b41d5ad826b3d12a552e8e35dabe0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.databinding/databinding-runtime/3.4.2/9ee16666ab44dce5919d747483b7fe671f9f6e1e/databinding-runtime-3.4.2-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

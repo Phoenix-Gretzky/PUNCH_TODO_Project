@@ -1,4 +1,4 @@
-package com.example.todolistinkotlin
+package com.example.todolistinkotlin.ui
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -8,13 +8,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.todolistinkotlin.*
 import com.example.todolistinkotlin.databinding.ActivityMainBinding
+import com.example.todolistinkotlin.model.ToDoListData
+import com.example.todolistinkotlin.model.TodoData
+import com.example.todolistinkotlin.network.RetrofitFactory
+import com.example.todolistinkotlin.network.TodoDataRepositoryImp
+import com.example.todolistinkotlin.viewModel.ToDoListViewModel
+import com.example.todolistinkotlin.viewModel.TodoViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainActivity : AppCompatActivity(), OnItemClick {
+class MainActivity : AppCompatActivity(),
+    OnItemClick {
 
     val list = mutableListOf<ToDoListData>()
 
@@ -26,19 +34,32 @@ class MainActivity : AppCompatActivity(), OnItemClick {
 
     var cal = Calendar.getInstance()
 
-    private val listAdapter = ListAdapter(list, this)
+    private val listAdapter =
+        ListAdapter(list, this)
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var viewModel: ToDoListViewModel
+    private val repository: TodoDataRepositoryImp by lazy {
+        TodoDataRepositoryImp(RetrofitFactory.service)
+    }
+
+    private val viewModel: ToDoListViewModel by lazy {
+        val todoViewModelFactory =
+            TodoViewModelFactory(
+                application,
+                repository
+            )
+        ViewModelProviders.of(this,todoViewModelFactory)[ToDoListViewModel::class.java]
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this,
+            R.layout.activity_main
+        )
         binding.lifecycleOwner = this
-        viewModel = ViewModelProviders.of(this).get(ToDoListViewModel::class.java)
 
         rvTodoList.layoutManager = LinearLayoutManager(this)
         rvTodoList.adapter = listAdapter
@@ -47,7 +68,7 @@ class MainActivity : AppCompatActivity(), OnItemClick {
 
         viewModel.getPreviousList()
 
-        viewModel.toDoList.observe(this, androidx.lifecycle.Observer {
+        viewModel.toDoList.observe(this, androidx.lifecycle.Observer { it ->
             //list.addAll(it)
             if (it == null)
                 return@Observer
@@ -133,6 +154,7 @@ class MainActivity : AppCompatActivity(), OnItemClick {
 
     override fun onItemClick(v: View, position: Int) {
 
+        viewModel.previousData= TodoData(list.get(position).title,list.get(position).date,list.get(position).time,list.get(position).indexDb)
 
         alert {
             message = list.get(position).title
@@ -142,10 +164,12 @@ class MainActivity : AppCompatActivity(), OnItemClick {
                 viewModel.time.set(list.get(position).time)
                 viewModel.position = position
                 viewModel.index = list.get(position).indexDb
+                viewModel.isEditing=true;
                 editText.isFocusable = true
             }
             negativeButton("Delete") {
                 viewModel.delete(list.get(position).indexDb)
+                viewModel.deleteAnalytics()
             }
 
         }.show()

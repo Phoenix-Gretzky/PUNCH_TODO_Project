@@ -4,8 +4,13 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/582eb3d76ac2d86eb7f149ad2db2e6d7/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/582eb3d76ac2d86eb7f149ad2db2e6d7/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/582eb3d76ac2d86eb7f149ad2db2e6d7/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c7d4a18c4ec4b8e02ad851df7f6cb3da/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c7d4a18c4ec4b8e02ad851df7f6cb3da/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c7d4a18c4ec4b8e02ad851df7f6cb3da/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.cardview/cardview/1.0.0/c9f3ce7ca74ad2c978230f4094ba6804c5166f9c/cardview-1.0.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

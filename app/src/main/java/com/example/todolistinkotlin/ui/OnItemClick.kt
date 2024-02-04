@@ -1,4 +1,4 @@
-package com.example.todolistinkotlin
+package com.example.todolistinkotlin.ui
 
 import android.view.View
 

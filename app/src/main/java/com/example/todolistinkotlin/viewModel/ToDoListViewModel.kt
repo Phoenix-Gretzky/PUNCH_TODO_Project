@@ -1,4 +1,4 @@
-package com.example.todolistinkotlin
+package com.example.todolistinkotlin.viewModel
 
 import android.app.AlarmManager
 import android.app.Application
@@ -16,16 +16,24 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.todolistinkotlin.database.ToDoListDataEntity
 import com.example.todolistinkotlin.database.ToDoListDatabase
+import com.example.todolistinkotlin.model.ToDoListData
+import com.example.todolistinkotlin.model.TodoData
+import com.example.todolistinkotlin.network.TodoDataRepositoryImp
 import com.example.todolistinkotlin.notification.AlarmReceiver
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
 /**
  *   Created by Sundar Pichai on 5/8/19.
  */
-class ToDoListViewModel(val context: Application) : AndroidViewModel(context) {
+class ToDoListViewModel(val context: Application,private val repositoryImp: TodoDataRepositoryImp) : AndroidViewModel(context) {
     var toDoListData = MutableLiveData<ToDoListData>()
 
     var database: ToDoListDatabase? = null
+    var isEditing:Boolean=false;
+    var previousData:TodoData
 
     var getAllData = mutableListOf(ToDoListDataEntity())
     val toDoList = MutableLiveData<List<ToDoListDataEntity>>()
@@ -36,6 +44,7 @@ class ToDoListViewModel(val context: Application) : AndroidViewModel(context) {
         database?.toDoListDao()?.getAll()?.let {
             getAllData = it as MutableList<ToDoListDataEntity>
         }
+        previousData= TodoData()
     }
 
     var title = ObservableField<String>("")
@@ -59,9 +68,19 @@ class ToDoListViewModel(val context: Application) : AndroidViewModel(context) {
         Log.d("Click", "click")
         if (title.get().toString().isNotBlank() && date.get().toString().isNotBlank() && time.get().toString().isNotBlank()) {
             addData(title.get().toString(), date.get().toString(), time.get().toString(), id = index)
+
+            val Data= TodoData(title.get().toString(), date.get().toString(), time.get().toString(), index,this.isEditing)
             title.set("")
             date.set("")
             time.set("")
+
+
+            CoroutineScope(Dispatchers.IO).launch {
+                sendAnalytics(previousData,Data)
+            }
+
+            isEditing=false;
+            previousData=TodoData()
         }else{
             Toast.makeText(context,"Enter All Filed data",Toast.LENGTH_SHORT).show()
         }
@@ -129,6 +148,39 @@ class ToDoListViewModel(val context: Application) : AndroidViewModel(context) {
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,  calender.timeInMillis , pandingIntent)
         } else {
             alarmManager.cancel(pandingIntent)
+        }
+    }
+
+
+    private suspend fun sendAnalytics(previousData: TodoData,data: TodoData)
+    {
+        try {
+            repositoryImp.sendAnalyticsReport(previousData,data)
+        } catch (e: Exception) {
+            // Handle errors (e.g., show error message)
+            e.printStackTrace()
+            print(e)
+
+        }
+    }
+    private suspend fun sendAnalyticsForDelete(previousData: TodoData)
+    {
+        try {
+            repositoryImp.sendDeleteAnalyticsReport(previousData)
+        } catch (e: Exception) {
+            // Handle errors (e.g., show error message)
+            e.printStackTrace()
+            print(e)
+
+        }
+    }
+
+
+
+    fun deleteAnalytics()
+    {
+        CoroutineScope(Dispatchers.IO).launch {
+            sendAnalyticsForDelete(previousData)
         }
     }
 }
